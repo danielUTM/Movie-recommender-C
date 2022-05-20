@@ -1468,13 +1468,11 @@
 
             //track user behaviour
             function track(id) {
-                date = new Date();
                 console.log(id);
                 //sends data to database
                 $.post("/postUserBehaviour", 
                 { 
                     button: id, 
-                    timestamp: date.getTime()
                 });
 };
         </script>

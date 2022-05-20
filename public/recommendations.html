@@ -162,7 +162,7 @@
                   <p class="float-right">
                     <a href="#">Back to top</a>
                   </p>
-                <p>Explainable AI Movie Recommender System A</p>
+                <p>Explainable AI Movie Recommender System C</p>
               </div>
               
           </footer>
@@ -175,12 +175,10 @@
         <script>
             //track user behaviour
             function track(id) {
-                date = new Date();
                 //sends data to database
                 $.post("/postUserBehaviour", 
                     {
-                        button: id, 
-                        timestamp: date.getTime()
+                        button: id,
                     });
                 };
             
