@@ -1,0 +1,1483 @@
+<!doctype html>
+
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Sophie McFarlane, Daniel Campbell, Ziqi Pan">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+        <title>Explainable AI-System C</title>
+
+        <!-- Link to Bootstrap CSS-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <!-- Link to local stylesheet -->
+        <link rel="stylesheet" href="./index.css">
+        <!-- Link to jQuery-->
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Link to javascript file -->
+        <script type="text/javascipt" src="./home.js"></script>
+        <!-- Favicon -->
+        <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+        <link rel="manifest" href="images/site.webmanifest">
+
+    </head>
+
+    <body>
+        <!--NavBar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Movie Recommender</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./recommendations.html">Recommendations</a>
+                </li>
+              </ul>
+              <span class="navbar-text">
+                Movie Recommender using Explainable AI
+              </span>
+            </div>
+          </nav>
+
+        <!--Jumbotron Section-->
+        <section class="jumbotron text-center" style="background-color: white;">
+            <div class="container">
+                <h1>Movie Recommender</h1>
+                <p id="jumbotronText" class="lead text-muted">
+                    Welcome! This is a Movie Recommender system used for an experiment. If you are new please sign up below, if you have been here before then please login!
+                </p>
+            </div>
+        </section>
+
+        <!-- Progress Bar -->
+        <div id=progressBarDiv class="progress w-75">
+            <div id=progressBar class="progress-bar progress-bar-striped progress-bar-animated bg-warning" style="width: 20%" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+
+        <br>
+
+        <!-- Main Body-->
+        <div class=" container bg-light py-5">
+            <!-- Group 1 Movies -->
+            <div class="group-1-movies">
+
+                <p class="lead text-muted">Please indicate how much you like the following movies (1 star: I don't like it at all; 5 stars: I like it a lot.).<br>
+                    Please rate all the movies you know. If you do not know any of these movies, please click Next.</p>
+
+                <div class="row">
+                    <!-- Group 1, Movie 1-->
+                    <div class="col">
+                        <div class="card" >
+                            <div class="card-body">
+                            <h5 id=g1m1Title class="card-title"></h5>
+                            <h6 id=g1m1Runtime class="card-subtitle mb-2 text-muted"></h6>
+                            <br>
+                            <h6 id=g1m1Description class="card-subtitle mb-2 text-muted"></h6>
+                            <p class="card-text"></p>
+                            <p>
+                                <i id="g1s1" class="star m1star1" type="button" onclick="track(this.id)"></i>
+                                <i id="g1s1v2" class="star-v2 m1star1v2" type="button" onclick="track(this.id)"></i>
+                                <i id="g1s2" class="star m1star2" type="button" onclick="track(this.id)"></i>
+                                <i id="g1s2v2" class="star-v2 m1star2v2" type="button" onclick="track(this.id)"></i>
+                                <i id="g1s3" class="star m1star3" type="button" onclick="track(this.id)"></i>
+                                <i id="g1s3v2" class="star-v2 m1star3v2" type="button" onclick="track(this.id)"></i>
+                                <i id="g1s4" class="star m1star4" type="button" onclick="track(this.id)"></i>
+                                <i id="g1s4v2" class="star-v2 m1star4v2" type="button" onclick="track(this.id)"></i>
+                                <i id="g1s5" class="star m1star5" type="button" onclick="track(this.id)"></i>
+                                <i id="g1s5v2" class="star-v2 m1star5v2" type="button" onclick="track(this.id)"></i>
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Group 1, Movie 2-->
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                            <h5 id=g1m2Title class="card-title"></h5>
+                            <h6 id=g1m2Runtime class="card-subtitle mb-2 text-muted"></h6>
+                            <br>
+                            <h6 id=g1m2Description class="card-subtitle mb-2 text-muted"></h6>
+                            <p class="card-text"></p>
+                            <p>
+                                <i id="g1s1" class="star m2star1" type="button" onclick="track(this.id)"></i>
+                                <i id="g1s1v2" class="star-v2 m2star1v2" type="button" onclick="(this.id)"></i>
+                                <i id="g1s2" class="star m2star2" type="button" onclick="track(this.id)"></i>
+                                <i id="g1s2v2" class="star-v2 m2star2v2" type="button" onclick="track(this.id)"></i>
+                                <i id="g1s3" class="star m2star3" type="button" onclick="track(this.id)"></i>
+                                <i id="g1s3v2" class="star-v2 m2star3v2" type="button" onclick="track(this.id)"></i>
+                                <i id="g1s4" class="star m2star4" type="button" onclick="track(this.id)"></i>
+                                <i id="g1s4v2" class="star-v2 m2star4v2" type="button" onclick="track(this.id)"></i>
+                                <i id="g1s5" class="star m2star5" type="button" onclick="track(this.id)"></i>
+                                <i id="g1s5v2" class="star-v2 m2star5v2" type="button" onclick="track(this.id)"></i>
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Group 1, Movie 3-->
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                            <h5 id=g1m3Title class="card-title"></h5>
+                            <h6 id=g1m3Runtime class="card-subtitle mb-2 text-muted"></h6>
+                            <br>
+                            <h6 id=g1m3Description class="card-subtitle mb-2 text-muted"></h6>
+                            <p class="card-text"></p>
+                            <p>
+                                <i id="g1s1" class="star m3star1" type="button" onclick="track(this.id)"></i>
+                                <i id="g1s1v2" class="star-v2 m3star1v2" type="button" onclick="track(this.id)"></i>
+                                <i id="g1s2" class="star m3star2" type="button" onclick="track(this.id)"></i>
+                                <i id="g1s2v2" class="star-v2 m3star2v2" type="button" onclick="track(this.id)"></i>
+                                <i id="g1s3" class="star m3star3" type="button" onclick="track(this.id)"></i>
+                                <i id="g1s3v2" class="star-v2 m3star3v2" type="button" onclick="track(this.id)"></i>
+                                <i id="g1s4" class="star m3star4" type="button" onclick="track(this.id)"></i>
+                                <i id="g1s4v2" class="star-v2 m3star4v2" type="button" onclick="track(this.id)"></i>
+                                <i id="g1s5" class="star m3star5" type="button" onclick="track(this.id)"></i>
+                                <i id="g1s5v2" class="star-v2 m3star5v2" type="button" onclick="track(this.id)"></i>
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                </br>
+
+                <button id=g1next class="btn btn-secondary btn-next btn-lg">Next</button>
+                <button id=g1complete class="btn btn-secondary" type='button' style="display: none" value='Get Recommendations' onClick="goToRecs()">Get Recommendations</button>
+
+                </br>
+            </div>
+
+            <!-- Group 2 Movies -->
+            <div class="group-2-movies">
+                <p class="lead text-muted">Please indicate how much you like the following movies (1 star: I don't like it at all; 5 stars: I like it a lot.).<br>
+                    Please rate all the movies you know. If you do not know any of these movies, please click Next.</p>
+
+                <div class="row">
+                    <!-- Group 2, Movie 1-->
+                    <div class="col">
+                        <div class="card" >
+                            <div class="card-body">
+                            <h5 id=g2m1Title class="card-title"></h5>
+                            <h6 id=g2m1Runtime class="card-subtitle mb-2 text-muted"></h6>
+                            <br>
+                            <h6 id=g2m1Description class="card-subtitle mb-2 text-muted"></h6>
+                            <p class="card-text"></p>
+                            <p>
+                                <i id="g2s1" class="star m1star1" type="button" onclick="track(this.id)"></i>
+                                <i id="g2s1v2" class="star-v2 m1star1v2" type="button" onclick="track(this.id)"></i>
+                                <i id="g2s2" class="star m1star2" type="button" onclick="track(this.id)"></i>
+                                <i id="g2s2v2" class="star-v2 m1star2v2" type="button" onclick="track(this.id)"></i>
+                                <i id="g2s3" class="star m1star3" type="button" onclick="track(this.id)"></i>
+                                <i id="g2s3v2" class="star-v2 m1star3v2" type="button" onclick="track(this.id)"></i>
+                                <i id="g2s4" class="star m1star4" type="button" onclick="track(this.id)"></i>
+                                <i id="g2s4v2" class="star-v2 m1star4v2" type="button" onclick="track(this.id)"></i>
+                                <i id="g2s5" class="star m1star5" type="button" onclick="track(this.id)"></i>
+                                <i id="g2s5v2" class="star-v2 m1star5v2" type="button" onclick="track(this.id)"></i>
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Group 2, Movie 2-->
+                    <div class="col">
+                        <div class="card" >
+                            <div class="card-body">
+                            <h5 id=g2m2Title class="card-title"></h5>
+                            <h6 id=g2m2Runtime class="card-subtitle mb-2 text-muted"></h6>
+                            <br>
+                            <h6 id=g2m2Description class="card-subtitle mb-2 text-muted"></h6>
+                            <p class="card-text"></p>
+                            <p>
+                                <i id="g2s1" class="star m2star1" type="button" onclick="track(this.id)"></i>
+                                <i id="g2s1v2" class="star-v2 m2star1v2" type="button" onclick="track(this.id)"></i>
+                                <i id="g2s2" class="star m2star2" type="button" onclick="track(this.id)"></i>
+                                <i id="g2s2v2" class="star-v2 m2star2v2" type="button" onclick="track(this.id)"></i>
+                                <i id="g2s3" class="star m2star3" type="button" onclick="track(this.id)"></i>
+                                <i id="g2s3v2" class="star-v2 m2star3v2" type="button" onclick="track(this.id)"></i>
+                                <i id="g2s4" class="star m2star4" type="button" onclick="track(this.id)"></i>
+                                <i id="g2s4v2" class="star-v2 m2star4v2" type="button" onclick="track(this.id)"></i>
+                                <i id="g2s5" class="star m2star5" type="button" onclick="track(this.id)"></i>
+                                <i id="g2s5v2" class="star-v2 m2star5v2" type="button" onclick="track(this.id)"></i>
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Group 2, Movie 3-->
+                    <div class="col">
+                        <div class="card" >
+                            <div class="card-body">
+                            <h5 id=g2m3Title class="card-title"></h5>
+                            <h6 id=g2m3Runtime class="card-subtitle mb-2 text-muted"></h6>
+                            <br>
+                            <h6 id=g2m3Description class="card-subtitle mb-2 text-muted"></h6>
+                            <p class="card-text"></p>
+                            <p>
+                                <i id="g2s1" class="star m3star1" type="button" onclick="track(this.id)"></i>
+                                <i id="g2s1v2" class="star-v2 m3star1v2" type="button" onclick="track(this.id)"></i>
+                                <i id="g2s2" class="star m3star2" type="button" onclick="track(this.id)"></i>
+                                <i id="g2s2v2" class="star-v2 m3star2v2" type="button" onclick="track(this.id)"></i>
+                                <i id="g2s3" class="star m3star3" type="button" onclick="track(this.id)"></i>
+                                <i id="g2s3v2" class="star-v2 m3star3v2" type="button" onclick="track(this.id)"></i>
+                                <i id="g2s4" class="star m3star4" type="button" onclick="track(this.id)"></i>
+                                <i id="g2s4v2" class="star-v2 m3star4v2" type="button" onclick="track(this.id)"></i>
+                                <i id="g2s5" class="star m3star5" type="button" onclick="track(this.id)"></i>
+                                <i id="g2s5v2" class="star-v2 m3star5v2" type="button" onclick="track(this.id)"></i>
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                </br>
+
+                <button id=g2next class="btn btn-secondary btn-next btn-lg">Next</button>
+                <button id=g2complete class="btn btn-secondary" type='button' style="display: none" value='Get Recommendations' onClick="goToRecs()">Get Recommendations</button>
+
+            </div> 
+
+            <!-- Group 3 Movies -->
+            <div class="group-3-movies">
+                <p class="lead text-muted">Please indicate how much you like the following movies (1 star: I don't like it at all; 5 stars: I like it a lot.).<br>
+                    Please rate all the movies you know. If you do not know any of these movies, please click Next.</p>
+
+                <div class="row">
+                    <!-- Group 3, Movie 1-->
+                <div class="col">
+                    <div class="card" >
+                        <div class="card-body">
+                        <h5 id=g3m1Title class="card-title"></h5>
+                        <h6 id=g3m1Runtime class="card-subtitle mb-2 text-muted"></h6>
+                        <br>
+                        <h6 id=g3m1Description class="card-subtitle mb-2 text-muted"></h6>
+                        <p class="card-text"></p>
+                        <p>
+                            <i id="g3s1" class="star m1star1" type="button" onclick="track(this.id)"></i>
+                            <i id="g3s1v2" class="star-v2 m1star1v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g3s2" class="star m1star2" type="button" onclick="track(this.id)"></i>
+                            <i id="g3s2v2" class="star-v2 m1star2v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g3s3" class="star m1star3" type="button" onclick="track(this.id)"></i>
+                            <i id="g3s3v2" class="star-v2 m1star3v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g3s4" class="star m1star4" type="button" onclick="track(this.id)"></i>
+                            <i id="g3s4v2" class="star-v2 m1star4v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g3s5" class="star m1star5" type="button" onclick="track(this.id)"></i>
+                            <i id="g3s5v2" class="star-v2 m1star5v2" type="button" onclick="track(this.id)"></i>
+                        </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group 3, Movie 2-->
+                <div class="col">
+                    <div class="card" >
+                        <div class="card-body">
+                        <h5 id=g3m2Title class="card-title"></h5>
+                        <h6 id=g3m2Runtime class="card-subtitle mb-2 text-muted"></h6>
+                        <br>
+                        <h6 id=g3m2Description class="card-subtitle mb-2 text-muted"></h6>
+                        <p class="card-text"></p>
+                        <p>
+                            <i id="g3s1" class="star m2star1" type="button" onclick="track(this.id)"></i>
+                            <i id="g3s1v2" class="star-v2 m2star1v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g3s2" class="star m2star2" type="button" onclick="track(this.id)"></i>
+                            <i id="g3s2v2" class="star-v2 m2star2v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g3s3"class="star m2star3" type="button" onclick="track(this.id)"></i>
+                            <i id="g3s3v2" class="star-v2 m2star3v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g3s4" class="star m2star4" type="button" onclick="track(this.id)"></i>
+                            <i id="g3s4v2" class="star-v2 m2star4v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g3s5" class="star m2star5" type="button" onclick="track(this.id)"></i>
+                            <i id="g3s5v2" class="star-v2 m2star5v2" type="button" onclick="track(this.id)"></i>
+                        </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group 3, Movie 3-->
+                <div class="col">
+                    <div class="card" >
+                        <div class="card-body">
+                        <h5 id=g3m3Title class="card-title"></h5>
+                        <h6 id=g3m3Runtime class="card-subtitle mb-2 text-muted"></h6>
+                        <br>
+                        <h6 id=g3m3Description class="card-subtitle mb-2 text-muted"></h6>
+                        <p class="card-text"></p>
+                        <p>
+                            <i id="g3s1" class="star m3star1" type="button" onclick="track(this.id)"></i>
+                            <i id="g3s1v2" class="star-v2 m3star1v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g3s2" class="star m3star2" type="button" onclick="track(this.id)"></i>
+                            <i id="g3s2v2" class="star-v2 m3star2v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g3s3" class="star m3star3" type="button" onclick="track(this.id)"></i>
+                            <i id="g3s3v2" class="star-v2 m3star3v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g3s4" class="star m3star4" type="button" onclick="track(this.id)"></i>
+                            <i id="g3s4v2" class="star-v2 m3star4v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g3s5" class="star m3star5" type="button" onclick="track(this.id)"></i>
+                            <i id="g3s5v2" class="star-v2 m3star5v2" type="button" onclick="track(this.id)"></i>
+                        </p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                </br>
+
+                <button id=g3next class="btn btn-secondary btn-next btn-lg">Next</button>
+                <button id=g3complete class="btn btn-secondary" type='button' style="display: none" value='Get Recommendations' onClick="goToRecs()">Get Recommendations</button>
+
+            </div>
+
+            <!-- Group 4 Movies -->
+            <div class="group-4-movies">
+                <p class="lead text-muted">Please indicate how much you like the following movies (1 star: I don't like it at all; 5 stars: I like it a lot.).<br>
+                    Please rate all the movies you know. If you do not know any of these movies, please click Next.</p>
+
+                <div class="row">
+                    <!-- Group 4, Movie 1-->
+                <div class="col">
+                    <div class="card" >
+                        <div class="card-body">
+                        <h5 id=g4m1Title class="card-title"></h5>
+                        <h6 id=g4m1Runtime class="card-subtitle mb-2 text-muted"></h6>
+                        <br>
+                        <h6 id=g4m1Description class="card-subtitle mb-2 text-muted"></h6>
+                        <p class="card-text"></p>
+                        <p>
+                            <i id="g4s1" class="star m1star1" type="button" onclick="track(this.id)"></i>
+                            <i id="g4s1v2" class="star-v2 m1star1v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g4s2" class="star m1star2" type="button" onclick="track(this.id)"></i>
+                            <i id="g4s2v2" class="star-v2 m1star2v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g4s3" class="star m1star3" type="button" onclick="track(this.id)"></i>
+                            <i id="g4s3v2" class="star-v2 m1star3v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g4s4" class="star m1star4" type="button" onclick="track(this.id)"></i>
+                            <i id="g4s4v2" class="star-v2 m1star4v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g4s5" class="star m1star5" type="button" onclick="track(this.id)"></i>
+                            <i id="g4s5v2" class="star-v2 m1star5v2" type="button" onclick="track(this.id)"></i>
+                        </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group 4, Movie 2-->
+                <div class="col">
+                    <div class="card" >
+                        <div class="card-body">
+                        <h5 id=g4m2Title class="card-title"></h5>
+                        <h6 id=g4m2Runtime class="card-subtitle mb-2 text-muted"></h6>
+                        <br>
+                        <h6 id=g4m2Description class="card-subtitle mb-2 text-muted"></h6>
+                        <p class="card-text"></p>
+                        <p>
+                            <i id="g4s1" class="star m2star1" type="button" onclick="track(this.id)"></i>
+                            <i id="g4s1v2" class="star-v2 m2star1v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g4s2" class="star m2star2" type="button" onclick="track(this.id)"></i>
+                            <i id="g4s2v2" class="star-v2 m2star2v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g4s3" class="star m2star3" type="button" onclick="track(this.id)"></i>
+                            <i id="g4s3v2" class="star-v2 m2star3v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g4s4" class="star m2star4" type="button" onclick="track(this.id)"></i>
+                            <i id="g4s4v2" class="star-v2 m2star4v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g4s5" class="star m2star5" type="button" onclick="track(this.id)"></i>
+                            <i id="g4s5v2" class="star-v2 m2star5v2" type="button" onclick="track(this.id)"></i>
+                        </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group 4, Movie 3-->
+                <div class="col">
+                    <div class="card" >
+                        <div class="card-body">
+                        <h5 id=g4m3Title class="card-title"></h5>
+                        <h6 id=g4m3Runtime class="card-subtitle mb-2 text-muted"></h6>
+                        <br>
+                        <h6 id=g4m3Description class="card-subtitle mb-2 text-muted"></h6>
+                        <p class="card-text"></p>
+                        <p>
+                            <i id="g4s1" class="star m3star1" type="button" onclick="track(this.id)"></i>
+                            <i id="g4s1v2" class="star-v2 m3star1v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g4s2" class="star m3star2" type="button" onclick="track(this.id)"></i>
+                            <i id="g4s2v2" class="star-v2 m3star2v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g4s3" class="star m3star3" type="button" onclick="track(this.id)"></i>
+                            <i id="g4s3v2" class="star-v2 m3star3v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g4s4" class="star m3star4" type="button" onclick="track(this.id)"></i>
+                            <i id="g4s4v2" class="star-v2 m3star4v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g4s5" class="star m3star5" type="button" onclick="track(this.id)"></i>
+                            <i id="g4s5v2" class="star-v2 m3star5v2" type="button" onclick="track(this.id)"></i>
+                        </p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                </br>
+
+                <button id=g4next class="btn btn-secondary btn-next btn-lg">Next</button>
+                <button id=g4complete class="btn btn-secondary" type='button' style="display: none" value='Get Recommendations' onClick="goToRecs()">Get Recommendations</button>
+
+            </div>
+            
+            <!-- Group 5 Movies -->
+            <div class="group-5-movies">
+                <p class="lead text-muted">Please indicate how much you like the following movies (1 star: I don't like it at all; 5 stars: I like it a lot.).<br>
+                    Please rate all the movies you know. If you do not know any of these movies, please click Next.</p>
+
+                <div class="row">
+                    <!-- Group 5, Movie 1-->
+                <div class="col">
+                    <div class="card" >
+                        <div class="card-body">
+                        <h5 id=g5m1Title class="card-title"></h5>
+                        <h6 id=g5m1Runtime class="card-subtitle mb-2 text-muted"></h6>
+                        <br>
+                        <h6 id=g5m1Description class="card-subtitle mb-2 text-muted"></h6>
+                        <p class="card-text"></p>
+                        <p>
+                            <i id="g5s1" class="star m1star1" type="button" onclick="track(this.id)"></i>
+                            <i id="g5s1v2" class="star-v2 m1star1v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g5s2" class="star m1star2" type="button" onclick="track(this.id)"></i>
+                            <i id="g5s2v2" class="star-v2 m1star2v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g5s3" class="star m1star3" type="button" onclick="track(this.id)"></i>
+                            <i id="g5s3v2" class="star-v2 m1star3v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g5s4" class="star m1star4" type="button" onclick="track(this.id)"></i>
+                            <i id="g5s4v2" class="star-v2 m1star4v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g5s5" class="star m1star5" type="button" onclick="track(this.id)"></i>
+                            <i id="g5s5v2" class="star-v2 m1star5v2" type="button" onclick="track(this.id)"></i>
+                        </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group 5, Movie 2-->
+                <div class="col">
+                    <div class="card" >
+                        <div class="card-body">
+                        <h5 id=g5m2Title class="card-title"></h5>
+                        <h6 id=g5m2Runtime class="card-subtitle mb-2 text-muted"></h6>
+                        <br>
+                        <h6 id=g5m2Description class="card-subtitle mb-2 text-muted"></h6>
+                        <p class="card-text"></p>
+                        <p>
+                            <i id="g5s1" class="star m2star1" type="button" onclick="track(this.id)"></i>
+                            <i id="g5s1v2" class="star-v2 m2star1v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g5s2" class="star m2star2" type="button" onclick="track(this.id)"></i>
+                            <i id="g5s2v2" class="star-v2 m2star2v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g5s3" class="star m2star3" type="button" onclick="track(this.id)"></i>
+                            <i id="g5s3v2" class="star-v2 m2star3v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g5s4" class="star m2star4" type="button" onclick="track(this.id)"></i>
+                            <i id="g5s4v2" class="star-v2 m2star4v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g5s5" class="star m2star5" type="button" onclick="track(this.id)"></i>
+                            <i id="g5s5v2" class="star-v2 m2star5v2" type="button" onclick="track(this.id)"></i>
+                        </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group 5, Movie 3-->
+                <div class="col">
+                    <div class="card" >
+                        <div class="card-body">
+                        <h5 id=g5m3Title class="card-title"></h5>
+                        <h6 id=g5m3Runtime class="card-subtitle mb-2 text-muted"></h6>
+                        <br>
+                        <h6 id=g5m3Description class="card-subtitle mb-2 text-muted"></h6>
+                        <p class="card-text"></p>
+                        <p>
+                            <i id="g5s1" class="star m3star1" type="button" onclick="track(this.id)"></i>
+                            <i id="g5s1v2" class="star-v2 m3star1v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g5s2" class="star m3star2" type="button" onclick="track(this.id)"></i>
+                            <i id="g5s2v2" class="star-v2 m3star2v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g5s3" class="star m3star3" type="button" onclick="track(this.id)"></i>
+                            <i id="g5s3v2" class="star-v2 m3star3v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g5s4" class="star m3star4" type="button" onclick="track(this.id)"></i>
+                            <i id="g5s4v2" class="star-v2 m3star4v2" type="button" onclick="track(this.id)"></i>
+                            <i id="g5s5" class="star m3star5" type="button" onclick="track(this.id)"></i>
+                            <i id="g5s5v2" class="star-v2 m3star5v2" type="button" onclick="track(this.id)"></i>
+                        </p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                </br>
+                <button id=g5next class="btn btn-secondary btn-next btn-lg">Next</button>
+                <button id=g5complete class="btn btn-secondary" type='button' style="display: none" value='Get Recommendations' onClick="goToRecs()">Get Recommendations</button>
+            </div>
+
+
+        </div>
+
+        <!--Footer-->
+        <footer class="text-muted">
+            <div class="container">
+                <p class="float-right">
+                    <a href="#">Back to top</a>
+                </p>
+                <p>Explainable AI Movie Recommender System C</p>
+            </div>   
+        </footer>
+
+        <!-- Link to JavaScrip: Popper.js and Bootstrap JS-->
+        
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+
+        <script>
+            var unvisited_groups = [1, 2, 3, 4, 5];
+            var visited_groups = [];
+
+            //Sign up function
+            // function signUp(){
+            $(function(){
+                // Get all users, find highest id then increment by 1
+                $.get("/getUsers", function(result) {
+                // e.preventDefault();
+                //Getting the username
+                var username = 0;
+                for (var i of result) {
+                    tempUsername = parseInt(i["username"])
+                    if (tempUsername > username) {
+                        username = tempUsername
+                    }
+                }
+                username++;
+
+                //Sign up post function
+                $.post("./signup", {
+                    username: username,
+                }, function(result){
+                        track("login");
+                        //Shows random movie group
+                        var index_of = Math.floor(Math.random() * unvisited_groups.length);
+                        var to_go = unvisited_groups.splice(index_of, 1);
+                        visited_groups.push(to_go);
+                        document.getElementsByClassName("group-"+ to_go + "-movies")[0].style.display = "inline-block";
+                        //Changes jumbotron text
+                        $('#jumbotronText').html("Please rate one movie below by clicking on the stars, and then click 'Next'. If you don't recognise any of the movies, just click 'Next'");
+                        //Shows progress bar
+                        document.getElementsByClassName("progress")[0].style.display="flex";
+                })
+            })
+        })
+
+
+            // $('#loginForm').on('submit', login);
+            // $('#signupForm').on('submit', signUp);
+
+            //Populate Movies
+            $(function(){
+                //Group 1
+                $.get("/getCluster0", function(result){
+                    // Get random index from 0 to number of films in cluster - 1
+                    film_1 = Math.floor(Math.random() * result.length);
+                    film_2 = Math.floor(Math.random() * result.length);
+                    // Ensure film 1 index not same as film 2
+                    while (film_1 === film_2) {
+                        film_2 = Math.floor(Math.random() * result.length);
+                    }
+                    film_3 = Math.floor(Math.random() * result.length);
+                    // Ensure all films not same index
+                    while(film_1 === film_3 || film_2 === film_3) {
+                        film_3 = Math.floor(Math.random() * result.length);
+                    }
+                    //Group 1, Movie 1
+                    $('#g1m1Title').html(result[film_1]["title"]);
+                    $('#g1m1Runtime').html( 'Runtime '+ result[film_1]["runtime"]+' mins');
+                    $('#g1m1Description').html(result[film_1]["description"]);
+                    //Group 1, Movie 2
+                    $('#g1m2Title').html(result[film_2]["title"]);
+                    $('#g1m2Runtime').html( 'Runtime '+ result[film_2]["runtime"]+' mins');
+                    $('#g1m2Description').html(result[film_2]["description"]);
+                    //Group 1, Movie 3
+                    $('#g1m3Title').html(result[film_3]["title"]);
+                    $('#g1m3Runtime').html( 'Runtime '+ result[film_3]["runtime"]+' mins');
+                    $('#g1m3Description').html(result[film_3]["description"]);
+
+                    // add movie id to star id
+                    var m1_stars = ["star m1star1", "star-v2 m1star1v2", "star m1star2", "star-v2 m1star2v2", "star m1star3",
+                                "star-v2 m1star3v2", "star m1star4", "star-v2 m1star4v2", "star m1star5", "star-v2 m1star5v2"]
+
+                    for (var i of m1_stars) {
+                        temp = document.getElementsByClassName(i)
+                        for (var j of temp) {
+                            if (j.getAttribute("id").includes("g1")) {
+                                j.setAttribute("id", j.getAttribute("id") + "m" + result[film_1]["id"])
+                            }
+                        }
+                    }
+
+                    var m2_stars = ["star m2star1", "star-v2 m2star1v2", "star m2star2", "star-v2 m2star2v2", "star m2star3",
+                                "star-v2 m2star3v2", "star m2star4", "star-v2 m2star4v2", "star m2star5", "star-v2 m2star5v2"]
+
+                    for (var i of m2_stars) {
+                        temp = document.getElementsByClassName(i)
+                        for (var j of temp) {
+                            if (j.getAttribute("id").includes("g1")) {
+                                j.setAttribute("id", j.getAttribute("id") + "m" + result[film_2]["id"])
+                            }
+                        }
+                    }
+
+                    var m3_stars = ["star m3star1", "star-v2 m3star1v2", "star m3star2", "star-v2 m3star2v2", "star m3star3",
+                                "star-v2 m3star3v2", "star m3star4", "star-v2 m3star4v2", "star m3star5", "star-v2 m3star5v2"]
+
+                    for (var i of m3_stars) {
+                        temp = document.getElementsByClassName(i)
+                        for (var j of temp) {
+                            if (j.getAttribute("id").includes("g1")) {
+                                j.setAttribute("id", j.getAttribute("id") + "m" + result[film_3]["id"])
+                            }
+                        }
+                    }
+                });
+
+                //Group 2
+                $.get("/getCluster1", function(result){
+                    // Get random index from 0 to number of films in cluster - 1
+                    film_1 = Math.floor(Math.random() * result.length);
+                    film_2 = Math.floor(Math.random() * result.length);
+                    // Ensure film 1 index not same as film 2
+                    while (film_1 === film_2) {
+                        film_2 = Math.floor(Math.random() * result.length);
+                    }
+                    film_3 = Math.floor(Math.random() * result.length);
+                    // Ensure all films not same index
+                    while(film_1 === film_3 || film_2 === film_3) {
+                        film_3 = Math.floor(Math.random() * result.length);
+                    }
+                    //Group 2, Movie 1
+                    $('#g2m1Title').html(result[film_1]["title"]);
+                    $('#g2m1Runtime').html( 'Runtime '+ result[film_1]["runtime"]+' mins');
+                    $('#g2m1Description').html(result[film_1]["description"]);
+                    //Group 2, Movie 2
+                    $('#g2m2Title').html(result[film_2]["title"]);
+                    $('#g2m2Runtime').html( 'Runtime '+ result[film_2]["runtime"]+' mins');
+                    $('#g2m2Description').html(result[film_2]["description"]);
+                    //Group 2, Movie 3
+                    $('#g2m3Title').html(result[film_3]["title"]);
+                    $('#g2m3Runtime').html( 'Runtime '+ result[film_3]["runtime"]+' mins');
+                    $('#g2m3Description').html(result[film_3]["description"]);
+
+                    var m1_stars = ["star m1star1", "star-v2 m1star1v2", "star m1star2", "star-v2 m1star2v2", "star m1star3",
+                                "star-v2 m1star3v2", "star m1star4", "star-v2 m1star4v2", "star m1star5", "star-v2 m1star5v2"]
+
+                    for (var i of m1_stars) {
+                        temp = document.getElementsByClassName(i)
+                        for (var j of temp) {
+                            if (j.getAttribute("id").includes("g2")) {
+                                j.setAttribute("id", j.getAttribute("id") + "m" + result[film_1]["id"])
+                            }
+                        }
+                    }
+
+                    var m2_stars = ["star m2star1", "star-v2 m2star1v2", "star m2star2", "star-v2 m2star2v2", "star m2star3",
+                                "star-v2 m2star3v2", "star m2star4", "star-v2 m2star4v2", "star m2star5", "star-v2 m2star5v2"]
+
+                    for (var i of m2_stars) {
+                        temp = document.getElementsByClassName(i)
+                        for (var j of temp) {
+                            if (j.getAttribute("id").includes("g2")) {
+                                j.setAttribute("id", j.getAttribute("id") + "m" + result[film_2]["id"])
+                            }
+                        }
+                    }
+
+                    var m3_stars = ["star m3star1", "star-v2 m3star1v2", "star m3star2", "star-v2 m3star2v2", "star m3star3",
+                                "star-v2 m3star3v2", "star m3star4", "star-v2 m3star4v2", "star m3star5", "star-v2 m3star5v2"]
+
+                    for (var i of m3_stars) {
+                        temp = document.getElementsByClassName(i)
+                        for (var j of temp) {
+                            if (j.getAttribute("id").includes("g2")) {
+                                j.setAttribute("id", j.getAttribute("id") + "m" + result[film_3]["id"])
+                            }
+                        }
+                    }
+                });
+
+                //Group 3
+                $.get("/getCluster2", function(result){
+                    // Get random index from 0 to number of films in cluster - 1
+                    film_1 = Math.floor(Math.random() * result.length);
+                    film_2 = Math.floor(Math.random() * result.length);
+                    // Ensure film 1 index not same as film 2
+                    while (film_1 === film_2) {
+                        film_2 = Math.floor(Math.random() * result.length);
+                    }
+                    film_3 = Math.floor(Math.random() * result.length);
+                    // Ensure all films not same index
+                    while(film_1 === film_3 || film_2 === film_3) {
+                        film_3 = Math.floor(Math.random() * result.length);
+                    }
+                    //Group 3, Movie 1
+                    $('#g3m1Title').html(result[film_1]["title"]);
+                    $('#g3m1Runtime').html( 'Runtime '+ result[film_1]["runtime"]+' mins');
+                    $('#g3m1Description').html(result[film_1]["description"]);
+                    //Group 3, Movie 2
+                    $('#g3m2Title').html(result[film_2]["title"]);
+                    $('#g3m2Runtime').html( 'Runtime '+ result[film_2]["runtime"]+' mins');
+                    $('#g3m2Description').html(result[film_2]["description"]);
+                    //Group 3, Movie 3
+                    $('#g3m3Title').html(result[film_3]["title"]);
+                    $('#g3m3Runtime').html( 'Runtime '+ result[film_3]["runtime"]+' mins');
+                    $('#g3m3Description').html(result[film_3]["description"]);
+
+                    var m1_stars = ["star m1star1", "star-v2 m1star1v2", "star m1star2", "star-v2 m1star2v2", "star m1star3",
+                                "star-v2 m1star3v2", "star m1star4", "star-v2 m1star4v2", "star m1star5", "star-v2 m1star5v2"]
+
+                    for (var i of m1_stars) {
+                        temp = document.getElementsByClassName(i)
+                        for (var j of temp) {
+                            if (j.getAttribute("id").includes("g3")) {
+                                j.setAttribute("id", j.getAttribute("id") + "m" + result[film_1]["id"])
+                            }
+                        }
+                    }
+
+                    var m2_stars = ["star m2star1", "star-v2 m2star1v2", "star m2star2", "star-v2 m2star2v2", "star m2star3",
+                                "star-v2 m2star3v2", "star m2star4", "star-v2 m2star4v2", "star m2star5", "star-v2 m2star5v2"]
+
+                    for (var i of m2_stars) {
+                        temp = document.getElementsByClassName(i)
+                        for (var j of temp) {
+                            if (j.getAttribute("id").includes("g3")) {
+                                j.setAttribute("id", j.getAttribute("id") + "m" + result[film_2]["id"])
+                            }
+                        }
+                    }
+
+                    var m3_stars = ["star m3star1", "star-v2 m3star1v2", "star m3star2", "star-v2 m3star2v2", "star m3star3",
+                                "star-v2 m3star3v2", "star m3star4", "star-v2 m3star4v2", "star m3star5", "star-v2 m3star5v2"]
+
+                    for (var i of m3_stars) {
+                        temp = document.getElementsByClassName(i)
+                        for (var j of temp) {
+                            if (j.getAttribute("id").includes("g3")) {
+                                j.setAttribute("id", j.getAttribute("id") + "m" + result[film_3]["id"])
+                            }
+                        }
+                    }
+                });
+
+                //Group 4
+                $.get("/getCluster3", function(result){
+                    // Get random index from 0 to number of films in cluster - 1
+                    film_1 = Math.floor(Math.random() * result.length);
+                    film_2 = Math.floor(Math.random() * result.length);
+                    // Ensure film 1 index not same as film 2
+                    while (film_1 === film_2) {
+                        film_2 = Math.floor(Math.random() * result.length);
+                    }
+                    film_3 = Math.floor(Math.random() * result.length);
+                    // Ensure all films not same index
+                    while(film_1 === film_3 || film_2 === film_3) {
+                        film_3 = Math.floor(Math.random() * result.length);
+                    }
+                    //Group 4, Movie 1
+                    $('#g4m1Title').html(result[film_1]["title"]);
+                    $('#g4m1Runtime').html( 'Runtime '+ result[film_1]["runtime"]+' mins');
+                    $('#g4m1Description').html(result[film_1]["description"]);
+                    //Group 4, Movie 2
+                    $('#g4m2Title').html(result[film_2]["title"]);
+                    $('#g4m2Runtime').html( 'Runtime '+ result[film_2]["runtime"]+' mins');
+                    $('#g4m2Description').html(result[film_2]["description"]);
+                    //Group 4, Movie 3
+                    $('#g4m3Title').html(result[film_3]["title"]);
+                    $('#g4m3Runtime').html( 'Runtime '+ result[film_3]["runtime"]+' mins');
+                    $('#g4m3Description').html(result[film_3]["description"]);
+
+                    var m1_stars = ["star m1star1", "star-v2 m1star1v2", "star m1star2", "star-v2 m1star2v2", "star m1star3",
+                                "star-v2 m1star3v2", "star m1star4", "star-v2 m1star4v2", "star m1star5", "star-v2 m1star5v2"]
+
+                    for (var i of m1_stars) {
+                        temp = document.getElementsByClassName(i)
+                        for (var j of temp) {
+                            if (j.getAttribute("id").includes("g4")) {
+                                j.setAttribute("id", j.getAttribute("id") + "m" + result[film_1]["id"])
+                            }
+                        }
+                    }
+
+                    var m2_stars = ["star m2star1", "star-v2 m2star1v2", "star m2star2", "star-v2 m2star2v2", "star m2star3",
+                                "star-v2 m2star3v2", "star m2star4", "star-v2 m2star4v2", "star m2star5", "star-v2 m2star5v2"]
+
+                    for (var i of m2_stars) {
+                        temp = document.getElementsByClassName(i)
+                        for (var j of temp) {
+                            if (j.getAttribute("id").includes("g4")) {
+                                j.setAttribute("id", j.getAttribute("id") + "m" + result[film_2]["id"])
+                            }
+                        }
+                    }
+
+                    var m3_stars = ["star m3star1", "star-v2 m3star1v2", "star m3star2", "star-v2 m3star2v2", "star m3star3",
+                                "star-v2 m3star3v2", "star m3star4", "star-v2 m3star4v2", "star m3star5", "star-v2 m3star5v2"]
+
+                    for (var i of m3_stars) {
+                        temp = document.getElementsByClassName(i)
+                        for (var j of temp) {
+                            if (j.getAttribute("id").includes("g4")) {
+                                j.setAttribute("id", j.getAttribute("id") + "m" + result[film_3]["id"])
+                            }
+                        }
+                    }
+                });
+
+                //Group 5
+                $.get("/getCluster4", function(result){
+                    // Get random index from 0 to number of films in cluster - 1
+                    film_1 = Math.floor(Math.random() * result.length);
+                    film_2 = Math.floor(Math.random() * result.length);
+                    // Ensure film 1 index not same as film 2
+                    while (film_1 === film_2) {
+                        film_2 = Math.floor(Math.random() * result.length);
+                    }
+                    film_3 = Math.floor(Math.random() * result.length);
+                    // Ensure all films not same index
+                    while(film_1 === film_3 || film_2 === film_3) {
+                        film_3 = Math.floor(Math.random() * result.length);
+                    }
+                    //Group 5, Movie 1
+                    $('#g5m1Title').html(result[film_1]["title"]);
+                    $('#g5m1Runtime').html( 'Runtime '+ result[film_1]["runtime"]+' mins');
+                    $('#g5m1Description').html(result[film_1]["description"]);
+                    //Group 5, Movie 2
+                    $('#g5m2Title').html(result[film_2]["title"]);
+                    $('#g5m2Runtime').html( 'Runtime '+ result[film_2]["runtime"]+' mins');
+                    $('#g5m2Description').html(result[film_2]["description"]);
+                    //Group 5, Movie 3
+                    $('#g5m3Title').html(result[film_3]["title"]);
+                    $('#g5m3Runtime').html( 'Runtime '+ result[film_3]["runtime"]+' mins');
+                    $('#g5m3Description').html(result[film_3]["description"]);
+
+                    var m1_stars = ["star m1star1", "star-v2 m1star1v2", "star m1star2", "star-v2 m1star2v2", "star m1star3",
+                                "star-v2 m1star3v2", "star m1star4", "star-v2 m1star4v2", "star m1star5", "star-v2 m1star5v2"]
+
+                    for (var i of m1_stars) {
+                        temp = document.getElementsByClassName(i)
+                        for (var j of temp) {
+                            if (j.getAttribute("id").includes("g5")) {
+                                j.setAttribute("id", j.getAttribute("id") + "m" + result[film_1]["id"])
+                            }
+                        }
+                    }
+
+                    var m2_stars = ["star m2star1", "star-v2 m2star1v2", "star m2star2", "star-v2 m2star2v2", "star m2star3",
+                                "star-v2 m2star3v2", "star m2star4", "star-v2 m2star4v2", "star m2star5", "star-v2 m2star5v2"]
+
+                    for (var i of m2_stars) {
+                        temp = document.getElementsByClassName(i)
+                        for (var j of temp) {
+                            if (j.getAttribute("id").includes("g5")) {
+                                j.setAttribute("id", j.getAttribute("id") + "m" + result[film_2]["id"])
+                            }
+                        }
+                    }
+
+                    var m3_stars = ["star m3star1", "star-v2 m3star1v2", "star m3star2", "star-v2 m3star2v2", "star m3star3",
+                                "star-v2 m3star3v2", "star m3star4", "star-v2 m3star4v2", "star m3star5", "star-v2 m3star5v2"]
+
+                    for (var i of m3_stars) {
+                        temp = document.getElementsByClassName(i)
+                        for (var j of temp) {
+                            if (j.getAttribute("id").includes("g5")) {
+                                j.setAttribute("id", j.getAttribute("id") + "m" + result[film_3]["id"])
+                            }
+                        }
+                    }
+                });
+            });
+
+            //Change Colour of Stars for Movie 1
+            $(function(){
+                //Movie 1 star lists
+                // class="btn btn-secondary btn-next btn-lg"
+                var m1_s1_elements = document.getElementsByClassName('m1star1');
+                var m1_s1_elements_v2 = document.getElementsByClassName('m1star1v2');
+                var m1_s2_elements = document.getElementsByClassName('m1star2');
+                var m1_s2_elements_v2 = document.getElementsByClassName('m1star2v2');
+                var m1_s3_elements = document.getElementsByClassName('m1star3');
+                var m1_s3_elements_v2 = document.getElementsByClassName('m1star3v2');
+                var m1_s4_elements = document.getElementsByClassName('m1star4');
+                var m1_s4_elements_v2 = document.getElementsByClassName('m1star4v2');
+                var m1_s5_elements = document.getElementsByClassName('m1star5');
+                var m1_s5_elements_v2 = document.getElementsByClassName('m1star5v2');
+                var length = m1_s1_elements.length;
+
+                //Movie 1 Star 1 is clicked
+                $('.m1star1').click(function(){
+                    for(var i=0; i<length; i++){
+                        m1_s1_elements[i].style.display = "none";
+                        m1_s1_elements_v2[i].style.display = "inline-block";
+                        
+                    }
+                })
+                //Movie 1 Star 1-v2 is clicked
+                $('.m1star1v2').click(function(){
+                    for(var i=0; i<length; i++){
+                        m1_s1_elements[i].style.display = "none";
+                        m1_s1_elements_v2[i].style.display = "inline-block";
+                        m1_s2_elements[i].style.display = "inline-block";
+                        m1_s2_elements_v2[i].style.display = "none";
+                        m1_s3_elements[i].style.display = "inline-block";
+                        m1_s3_elements_v2[i].style.display = "none";
+                        m1_s4_elements[i].style.display = "inline-block";
+                        m1_s4_elements_v2[i].style.display = "none";
+                        m1_s5_elements[i].style.display = "inline-block";
+                        m1_s5_elements_v2[i].style.display = "none";
+                    }
+                })
+                //Movie 1 Star 2 is clicked
+                $('.m1star2').click(function(){
+                    for(var i=0; i<length; i++){
+                        m1_s1_elements[i].style.display = "none";
+                        m1_s1_elements_v2[i].style.display = "inline-block";
+                        m1_s2_elements[i].style.display = "none";
+                        m1_s2_elements_v2[i].style.display = "inline-block";
+                        
+                    }
+                })
+                //Movie 1 Star 2-v2 is clicked
+                $('.m1star2v2').click(function(){
+                    for(var i=0; i<length; i++){
+                        m1_s1_elements[i].style.display = "none";
+                        m1_s1_elements_v2[i].style.display = "inline-block";
+                        m1_s2_elements[i].style.display = "none";
+                        m1_s2_elements_v2[i].style.display = "inline-block";
+                        m1_s3_elements[i].style.display = "inline-block";
+                        m1_s3_elements_v2[i].style.display = "none";
+                        m1_s4_elements[i].style.display = "inline-block";
+                        m1_s4_elements_v2[i].style.display = "none";
+                        m1_s5_elements[i].style.display = "inline-block";
+                        m1_s5_elements_v2[i].style.display = "none";
+                    }
+                })
+                //Movie 1 Star 3 is clicked
+                $('.m1star3').click(function(){
+                    for(var i=0; i<length; i++){
+                        m1_s1_elements[i].style.display = "none";
+                        m1_s1_elements_v2[i].style.display = "inline-block";
+                        m1_s2_elements[i].style.display = "none";
+                        m1_s2_elements_v2[i].style.display = "inline-block";
+                        m1_s3_elements[i].style.display = "none";
+                        m1_s3_elements_v2[i].style.display = "inline-block";
+                    }
+                })
+                //Movie 1 Star 3-v2 is clicked
+                $('.m1star3v2').click(function(){
+                    for(var i=0; i<length; i++){
+                        m1_s1_elements[i].style.display = "none";
+                        m1_s1_elements_v2[i].style.display = "inline-block";
+                        m1_s2_elements[i].style.display = "none";
+                        m1_s2_elements_v2[i].style.display = "inline-block";
+                        m1_s3_elements[i].style.display = "none";
+                        m1_s3_elements_v2[i].style.display = "inline-block";
+                        m1_s4_elements[i].style.display = "inline-block";
+                        m1_s4_elements_v2[i].style.display = "none";
+                        m1_s5_elements[i].style.display = "inline-block";
+                        m1_s5_elements_v2[i].style.display = "none";
+                    }
+                })
+                //Movie 1 Star 4 is clicked
+                $('.m1star4').click(function(){
+                    for(var i=0; i<length; i++){
+                        m1_s1_elements[i].style.display = "none";
+                        m1_s1_elements_v2[i].style.display = "inline-block";
+                        m1_s2_elements[i].style.display = "none";
+                        m1_s2_elements_v2[i].style.display = "inline-block";
+                        m1_s3_elements[i].style.display = "none";
+                        m1_s3_elements_v2[i].style.display = "inline-block";
+                        m1_s4_elements[i].style.display = "none";
+                        m1_s4_elements_v2[i].style.display = "inline-block";
+                    }
+                })
+                //Movie 1 Star 4-v2 is clicked
+                $('.m1star4v2').click(function(){
+                    for(var i=0; i<length; i++){
+                        m1_s1_elements[i].style.display = "none";
+                        m1_s1_elements_v2[i].style.display = "inline-block";
+                        m1_s2_elements[i].style.display = "none";
+                        m1_s2_elements_v2[i].style.display = "inline-block";
+                        m1_s3_elements[i].style.display = "none";
+                        m1_s3_elements_v2[i].style.display = "inline-block";
+                        m1_s4_elements[i].style.display = "none";
+                        m1_s4_elements_v2[i].style.display = "inline-block";
+                        m1_s5_elements[i].style.display = "inline-block";
+                        m1_s5_elements_v2[i].style.display = "none";
+                    }
+                })
+                //Movie 1 Star 5 is clicked
+                $('.m1star5').click(function(){
+                    for(var i=0; i<length; i++){
+                        m1_s1_elements[i].style.display = "none";
+                        m1_s1_elements_v2[i].style.display = "inline-block";
+                        m1_s2_elements[i].style.display = "none";
+                        m1_s2_elements_v2[i].style.display = "inline-block";
+                        m1_s3_elements[i].style.display = "none";
+                        m1_s3_elements_v2[i].style.display = "inline-block";
+                        m1_s4_elements[i].style.display = "none";
+                        m1_s4_elements_v2[i].style.display = "inline-block";
+                        m1_s5_elements[i].style.display = "none";
+                        m1_s5_elements_v2[i].style.display = "inline-block";
+                    }
+                })
+
+            })
+
+            //Change Colour of Stars for Movie 2
+            $(function(){
+                //Movie 2 star lists
+                var m2_s1_elements = document.getElementsByClassName('m2star1');
+                var m2_s1_elements_v2 = document.getElementsByClassName('m2star1v2');
+                var m2_s2_elements = document.getElementsByClassName('m2star2');
+                var m2_s2_elements_v2 = document.getElementsByClassName('m2star2v2');
+                var m2_s3_elements = document.getElementsByClassName('m2star3');
+                var m2_s3_elements_v2 = document.getElementsByClassName('m2star3v2');
+                var m2_s4_elements = document.getElementsByClassName('m2star4');
+                var m2_s4_elements_v2 = document.getElementsByClassName('m2star4v2');
+                var m2_s5_elements = document.getElementsByClassName('m2star5');
+                var m2_s5_elements_v2 = document.getElementsByClassName('m2star5v2');
+                var length = m2_s1_elements.length;
+
+                //Movie 2 Star 1 is clicked
+                $('.m2star1').click(function(){
+                    for(var i=0; i<length; i++){
+                        m2_s1_elements[i].style.display = "none";
+                        m2_s1_elements_v2[i].style.display = "inline-block";
+                        
+                    }
+                })
+                //Movie 2 Star 1-v2 is clicked
+                $('.m2star1v2').click(function(){
+                    for(var i=0; i<length; i++){
+                        m2_s1_elements[i].style.display = "none";
+                        m2_s1_elements_v2[i].style.display = "inline-block";
+                        m2_s2_elements[i].style.display = "inline-block";
+                        m2_s2_elements_v2[i].style.display = "none";
+                        m2_s3_elements[i].style.display = "inline-block";
+                        m2_s3_elements_v2[i].style.display = "none";
+                        m2_s4_elements[i].style.display = "inline-block";
+                        m2_s4_elements_v2[i].style.display = "none";
+                        m2_s5_elements[i].style.display = "inline-block";
+                        m2_s5_elements_v2[i].style.display = "none";
+                    }
+                })
+                //Movie 2 Star 2 is clicked
+                $('.m2star2').click(function(){
+                    for(var i=0; i<length; i++){
+                        m2_s1_elements[i].style.display = "none";
+                        m2_s1_elements_v2[i].style.display = "inline-block";
+                        m2_s2_elements[i].style.display = "none";
+                        m2_s2_elements_v2[i].style.display = "inline-block";
+                        
+                    }
+                })
+                //Movie 2 Star 2-v2 is clicked
+                $('.m2star2v2').click(function(){
+                    for(var i=0; i<length; i++){
+                        m2_s1_elements[i].style.display = "none";
+                        m2_s1_elements_v2[i].style.display = "inline-block";
+                        m2_s2_elements[i].style.display = "none";
+                        m2_s2_elements_v2[i].style.display = "inline-block";
+                        m2_s3_elements[i].style.display = "inline-block";
+                        m2_s3_elements_v2[i].style.display = "none";
+                        m2_s4_elements[i].style.display = "inline-block";
+                        m2_s4_elements_v2[i].style.display = "none";
+                        m2_s5_elements[i].style.display = "inline-block";
+                        m2_s5_elements_v2[i].style.display = "none";
+                    }
+                })
+                //Movie 2 Star 3 is clicked
+                $('.m2star3').click(function(){
+                    for(var i=0; i<length; i++){
+                        m2_s1_elements[i].style.display = "none";
+                        m2_s1_elements_v2[i].style.display = "inline-block";
+                        m2_s2_elements[i].style.display = "none";
+                        m2_s2_elements_v2[i].style.display = "inline-block";
+                        m2_s3_elements[i].style.display = "none";
+                        m2_s3_elements_v2[i].style.display = "inline-block";
+                    }
+                })
+                //Movie 2 Star 3-v2 is clicked
+                $('.m2star3v2').click(function(){
+                    for(var i=0; i<length; i++){
+                        m2_s1_elements[i].style.display = "none";
+                        m2_s1_elements_v2[i].style.display = "inline-block";
+                        m2_s2_elements[i].style.display = "none";
+                        m2_s2_elements_v2[i].style.display = "inline-block";
+                        m2_s3_elements[i].style.display = "none";
+                        m2_s3_elements_v2[i].style.display = "inline-block";
+                        m2_s4_elements[i].style.display = "inline-block";
+                        m2_s4_elements_v2[i].style.display = "none";
+                        m2_s5_elements[i].style.display = "inline-block";
+                        m2_s5_elements_v2[i].style.display = "none";
+                    }
+                })
+                //Movie 2 Star 4 is clicked
+                $('.m2star4').click(function(){
+                    for(var i=0; i<length; i++){
+                        m2_s1_elements[i].style.display = "none";
+                        m2_s1_elements_v2[i].style.display = "inline-block";
+                        m2_s2_elements[i].style.display = "none";
+                        m2_s2_elements_v2[i].style.display = "inline-block";
+                        m2_s3_elements[i].style.display = "none";
+                        m2_s3_elements_v2[i].style.display = "inline-block";
+                        m2_s4_elements[i].style.display = "none";
+                        m2_s4_elements_v2[i].style.display = "inline-block";
+                    }
+                })
+                //Movie 2 Star 4-v2 is clicked
+                $('.m2star4v2').click(function(){
+                    for(var i=0; i<length; i++){
+                        m2_s1_elements[i].style.display = "none";
+                        m2_s1_elements_v2[i].style.display = "inline-block";
+                        m2_s2_elements[i].style.display = "none";
+                        m2_s2_elements_v2[i].style.display = "inline-block";
+                        m2_s3_elements[i].style.display = "none";
+                        m2_s3_elements_v2[i].style.display = "inline-block";
+                        m2_s4_elements[i].style.display = "none";
+                        m2_s4_elements_v2[i].style.display = "inline-block";
+                        m2_s5_elements[i].style.display = "inline-block";
+                        m2_s5_elements_v2[i].style.display = "none";
+                    }
+                })
+                //Movie 2 Star 5 is clicked
+                $('.m2star5').click(function(){
+                    for(var i=0; i<length; i++){
+                        m2_s1_elements[i].style.display = "none";
+                        m2_s1_elements_v2[i].style.display = "inline-block";
+                        m2_s2_elements[i].style.display = "none";
+                        m2_s2_elements_v2[i].style.display = "inline-block";
+                        m2_s3_elements[i].style.display = "none";
+                        m2_s3_elements_v2[i].style.display = "inline-block";
+                        m2_s4_elements[i].style.display = "none";
+                        m2_s4_elements_v2[i].style.display = "inline-block";
+                        m2_s5_elements[i].style.display = "none";
+                        m2_s5_elements_v2[i].style.display = "inline-block";
+                    }
+                })
+
+            })
+
+            //Change Colour of Stars for Movie 3
+            $(function(){
+                //Movie 3 star lists
+                var m3_s1_elements = document.getElementsByClassName('m3star1');
+                var m3_s1_elements_v2 = document.getElementsByClassName('m3star1v2');
+                var m3_s2_elements = document.getElementsByClassName('m3star2');
+                var m3_s2_elements_v2 = document.getElementsByClassName('m3star2v2');
+                var m3_s3_elements = document.getElementsByClassName('m3star3');
+                var m3_s3_elements_v2 = document.getElementsByClassName('m3star3v2');
+                var m3_s4_elements = document.getElementsByClassName('m3star4');
+                var m3_s4_elements_v2 = document.getElementsByClassName('m3star4v2');
+                var m3_s5_elements = document.getElementsByClassName('m3star5');
+                var m3_s5_elements_v2 = document.getElementsByClassName('m3star5v2');
+                var length = m3_s1_elements.length;
+
+                //Movie 3 Star 1 is clicked
+                $('.m3star1').click(function(){
+                    for(var i=0; i<length; i++){
+                        m3_s1_elements[i].style.display = "none";
+                        m3_s1_elements_v2[i].style.display = "inline-block";
+                        
+                    }
+                })
+                //Movie 3 Star 1-v2 is clicked
+                $('.m3star1v2').click(function(){
+                    for(var i=0; i<length; i++){
+                        m3_s1_elements[i].style.display = "none";
+                        m3_s1_elements_v2[i].style.display = "inline-block";
+                        m3_s2_elements[i].style.display = "inline-block";
+                        m3_s2_elements_v2[i].style.display = "none";
+                        m3_s3_elements[i].style.display = "inline-block";
+                        m3_s3_elements_v2[i].style.display = "none";
+                        m3_s4_elements[i].style.display = "inline-block";
+                        m3_s4_elements_v2[i].style.display = "none";
+                        m3_s5_elements[i].style.display = "inline-block";
+                        m3_s5_elements_v2[i].style.display = "none";
+                    }
+                })
+                //Movie 3 Star 2 is clicked
+                $('.m3star2').click(function(){
+                    for(var i=0; i<length; i++){
+                        m3_s1_elements[i].style.display = "none";
+                        m3_s1_elements_v2[i].style.display = "inline-block";
+                        m3_s2_elements[i].style.display = "none";
+                        m3_s2_elements_v2[i].style.display = "inline-block";
+                        
+                    }
+                })
+                //Movie 3 Star 2-v2 is clicked
+                $('.m3star2v2').click(function(){
+                    for(var i=0; i<length; i++){
+                        m3_s1_elements[i].style.display = "none";
+                        m3_s1_elements_v2[i].style.display = "inline-block";
+                        m3_s2_elements[i].style.display = "none";
+                        m3_s2_elements_v2[i].style.display = "inline-block";
+                        m3_s3_elements[i].style.display = "inline-block";
+                        m3_s3_elements_v2[i].style.display = "none";
+                        m3_s4_elements[i].style.display = "inline-block";
+                        m3_s4_elements_v2[i].style.display = "none";
+                        m3_s5_elements[i].style.display = "inline-block";
+                        m3_s5_elements_v2[i].style.display = "none";
+                    }
+                })
+                //Movie 3 Star 3 is clicked
+                $('.m3star3').click(function(){
+                    for(var i=0; i<length; i++){
+                        m3_s1_elements[i].style.display = "none";
+                        m3_s1_elements_v2[i].style.display = "inline-block";
+                        m3_s2_elements[i].style.display = "none";
+                        m3_s2_elements_v2[i].style.display = "inline-block";
+                        m3_s3_elements[i].style.display = "none";
+                        m3_s3_elements_v2[i].style.display = "inline-block";
+                    }
+                })
+                //Movie 3 Star 3-v2 is clicked
+                $('.m3star3v2').click(function(){
+                    for(var i=0; i<length; i++){
+                        m3_s1_elements[i].style.display = "none";
+                        m3_s1_elements_v2[i].style.display = "inline-block";
+                        m3_s2_elements[i].style.display = "none";
+                        m3_s2_elements_v2[i].style.display = "inline-block";
+                        m3_s3_elements[i].style.display = "none";
+                        m3_s3_elements_v2[i].style.display = "inline-block";
+                        m3_s4_elements[i].style.display = "inline-block";
+                        m3_s4_elements_v2[i].style.display = "none";
+                        m3_s5_elements[i].style.display = "inline-block";
+                        m3_s5_elements_v2[i].style.display = "none";
+                    }
+                })
+                //Movie 3 Star 4 is clicked
+                $('.m3star4').click(function(){
+                    for(var i=0; i<length; i++){
+                        m3_s1_elements[i].style.display = "none";
+                        m3_s1_elements_v2[i].style.display = "inline-block";
+                        m3_s2_elements[i].style.display = "none";
+                        m3_s2_elements_v2[i].style.display = "inline-block";
+                        m3_s3_elements[i].style.display = "none";
+                        m3_s3_elements_v2[i].style.display = "inline-block";
+                        m3_s4_elements[i].style.display = "none";
+                        m3_s4_elements_v2[i].style.display = "inline-block";
+                    }
+                })
+                //Movie 3 Star 4-v2 is clicked
+                $('.m3star4v2').click(function(){
+                    for(var i=0; i<length; i++){
+                        m3_s1_elements[i].style.display = "none";
+                        m3_s1_elements_v2[i].style.display = "inline-block";
+                        m3_s2_elements[i].style.display = "none";
+                        m3_s2_elements_v2[i].style.display = "inline-block";
+                        m3_s3_elements[i].style.display = "none";
+                        m3_s3_elements_v2[i].style.display = "inline-block";
+                        m3_s4_elements[i].style.display = "none";
+                        m3_s4_elements_v2[i].style.display = "inline-block";
+                        m3_s5_elements[i].style.display = "inline-block";
+                        m3_s5_elements_v2[i].style.display = "none";
+                    }
+                })
+                //Movie 3 Star 5 is clicked
+                $('.m3star5').click(function(){
+                    for(var i=0; i<length; i++){
+                        m3_s1_elements[i].style.display = "none";
+                        m3_s1_elements_v2[i].style.display = "inline-block";
+                        m3_s2_elements[i].style.display = "none";
+                        m3_s2_elements_v2[i].style.display = "inline-block";
+                        m3_s3_elements[i].style.display = "none";
+                        m3_s3_elements_v2[i].style.display = "inline-block";
+                        m3_s4_elements[i].style.display = "none";
+                        m3_s4_elements_v2[i].style.display = "inline-block";
+                        m3_s5_elements[i].style.display = "none";
+                        m3_s5_elements_v2[i].style.display = "inline-block";
+                    }
+                })
+
+            })
+
+            //Next group buttons
+            $(function() {
+                //Lists of stars
+                var elements = document.getElementsByClassName('star');
+                var elements_v2 = document.getElementsByClassName('star-v2');
+                var next_buttons = document.getElementsByClassName("btn btn-secondary btn-next btn-lg");
+                var complete_buttons = document.getElementsByClassName("btn btn-secondary");
+                var length = elements.length;
+                const prog_bar_levls = [0, 20, 40, 60, 80, 100]
+
+                
+
+                $('#g1next').click(function(){
+                    // Remove current group
+                    var remove_group = visited_groups.at(-1);
+                    document.getElementsByClassName("group-"+ remove_group + "-movies")[0].style.display = "none";
+                    // Add new group
+                    var index_of = Math.floor(Math.random() * unvisited_groups.length);
+                    var to_go = unvisited_groups.splice(index_of, 1);
+                    visited_groups.push(to_go);
+                    document.getElementsByClassName("group-"+ to_go + "-movies")[0].style.display = "inline-block";
+                    for(var i=0; i<length; i++){
+                        elements[i].style.display = "inline-block";
+                        elements_v2[i].style.display = "none";
+                    }
+                    document.getElementById("progressBar").style.width = prog_bar_levls[visited_groups.length] + "%";
+                    // If we have 5 groups of films we've "visited", we need to remove next group button and go to recommendations
+                    // Hide next buttons, reveal get recommendations button 
+                    if (visited_groups.length == 5) {
+                        for (var i=0; i<complete_buttons.length; i++) {
+                            complete_buttons[i].style.display = "block";
+                            complete_buttons[i].style.float = "right";
+                        }
+                        for (var i=0; i<next_buttons.length; i++) {
+                            next_buttons[i].style.display = "none";
+                        }
+                    }
+                });
+
+                $('#g2next').click(function(){
+                    // Remove current group
+                    var remove_group = visited_groups.at(-1);
+                    document.getElementsByClassName("group-"+ remove_group + "-movies")[0].style.display = "none";
+                    // Add new group
+                    var index_of = Math.floor(Math.random() * unvisited_groups.length);
+                    var to_go = unvisited_groups.splice(index_of, 1);
+                    visited_groups.push(to_go);
+                    document.getElementsByClassName("group-"+ to_go + "-movies")[0].style.display = "inline-block";
+                    for(var i=0; i<length; i++){
+                        elements[i].style.display = "inline-block";
+                        elements_v2[i].style.display = "none";
+                    }
+                    document.getElementById("progressBar").style.width = prog_bar_levls[visited_groups.length] + "%";
+                    // If we have 5 groups of films we've "visited", we need to remove next group button and go to recommendations
+                    // Hide next buttons, reveal get recommendations button 
+                    if (visited_groups.length == 5) {
+                        for (var i=0; i<complete_buttons.length; i++) {
+                            complete_buttons[i].style.display = "block";
+                            complete_buttons[i].style.float = "right";
+                        }
+                        for (var i=0; i<next_buttons.length; i++) {
+                            next_buttons[i].style.display = "none";
+                        }
+                    }
+                });
+
+                $('#g3next').click(function(){
+                    // Remove current group
+                    var remove_group = visited_groups.at(-1);
+                    document.getElementsByClassName("group-"+ remove_group + "-movies")[0].style.display = "none";
+                    // Add new group
+                    var index_of = Math.floor(Math.random() * unvisited_groups.length);
+                    var to_go = unvisited_groups.splice(index_of, 1);
+                    visited_groups.push(to_go);
+                    document.getElementsByClassName("group-"+ to_go + "-movies")[0].style.display = "inline-block";
+                    for(var i=0; i<length; i++){
+                        elements[i].style.display = "inline-block";
+                        elements_v2[i].style.display = "none";
+                    }
+                    document.getElementById("progressBar").style.width = prog_bar_levls[visited_groups.length] + "%";
+                    // If we have 5 groups of films we've "visited", we need to remove next group button and go to recommendations
+                    // Hide next buttons, reveal get recommendations button 
+                    if (visited_groups.length == 5) {
+                        for (var i=0; i<complete_buttons.length; i++) {
+                            complete_buttons[i].style.display = "block";
+                            complete_buttons[i].style.float = "right";
+                        }
+                        for (var i=0; i<next_buttons.length; i++) {
+                            next_buttons[i].style.display = "none";
+                        }
+                    }
+                });
+
+                $('#g4next').click(function(){
+                    // Remove current group
+                    var remove_group = visited_groups.at(-1);
+                    document.getElementsByClassName("group-"+ remove_group + "-movies")[0].style.display = "none";
+                    // Add new group
+                    var index_of = Math.floor(Math.random() * unvisited_groups.length);
+                    var to_go = unvisited_groups.splice(index_of, 1);
+                    visited_groups.push(to_go);
+                    document.getElementsByClassName("group-"+ to_go + "-movies")[0].style.display = "inline-block";
+                    for(var i=0; i<length; i++){
+                        elements[i].style.display = "inline-block";
+                        elements_v2[i].style.display = "none";
+                    }
+                    document.getElementById("progressBar").style.width = prog_bar_levls[visited_groups.length] + "%";
+                    // If we have 5 groups of films we've "visited", we need to remove next group button and go to recommendations
+                    // Hide next buttons, reveal get recommendations button 
+                    if (visited_groups.length == 5) {
+                        for (var i=0; i<complete_buttons.length; i++) {
+                            complete_buttons[i].style.display = "block";
+                            complete_buttons[i].style.float = "right";
+                        }
+                        for (var i=0; i<next_buttons.length; i++) {
+                            next_buttons[i].style.display = "none";
+                        }
+                    }
+                });
+
+                $('#g5next').click(function(){
+                    // Remove current group
+                    var remove_group = visited_groups.at(-1);
+                    document.getElementsByClassName("group-"+ remove_group + "-movies")[0].style.display = "none";
+                    // Add new group
+                    var index_of = Math.floor(Math.random() * unvisited_groups.length);
+                    var to_go = unvisited_groups.splice(index_of, 1);
+                    visited_groups.push(to_go);
+                    document.getElementsByClassName("group-"+ to_go + "-movies")[0].style.display = "inline-block";
+                    for(var i=0; i<length; i++){
+                        elements[i].style.display = "inline-block";
+                        elements_v2[i].style.display = "none";
+                    }
+                    document.getElementById("progressBar").style.width = prog_bar_levls[visited_groups.length] + "%";
+                    // If we have 5 groups of films we've "visited", we need to remove next group button and go to recommendations
+                    // Hide next buttons, reveal get recommendations button 
+                    if (visited_groups.length == 5) {
+                        for (var i=0; i<complete_buttons.length; i++) {
+                            complete_buttons[i].style.display = "block";
+                            complete_buttons[i].style.float = "right";
+                        }
+                        for (var i=0; i<next_buttons.length; i++) {
+                            next_buttons[i].style.display = "none";
+                        }
+                    }
+                });
+            });
+
+            // go to recs page
+            function goToRecs() {
+                $.get("/getUsers", function(result) {
+                    //Getting the username
+                    var username = 0;
+                    for (var i of result) {
+                        tempUsername = parseInt(i["username"])
+                        if (tempUsername > username) {
+                            username = tempUsername
+                        }
+                    }
+                    window.location.href = './recommendations.html#' + username;
+                })
+            }
+
+            //track user behaviour
+            function track(id) {
+                date = new Date();
+                console.log(id);
+                //sends data to database
+                $.post("/postUserBehaviour", 
+                { 
+                    button: id, 
+                    timestamp: date.getTime()
+                });
+};
+        </script>
+
+    </body>
+</html>

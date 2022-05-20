@@ -1,0 +1,118 @@
+.jumbotron{
+    margin-bottom: 0;
+}
+
+.progress{
+    margin: 0 auto;
+    display: none;
+}
+
+.labels{
+    font-size: 20px;
+}
+
+.btn-next{
+    float: right;
+}
+
+.group-1-movies{
+    display: none;
+}
+
+.group-2-movies{
+    display: none;
+}
+
+.group-3-movies{
+    display: none;
+}
+
+.group-4-movies{
+    display: none;
+}
+
+.group-5-movies{
+    display: none;
+}
+
+.star {
+    position: relative;
+  
+    display: inline-block;
+    width: 0;
+    height: 0;
+  
+    margin-left: 0.9em;
+    margin-right: 0.9em;
+    margin-bottom: 1.2em;
+  
+    border-right: 0.3em solid transparent;
+    border-bottom: 0.7em solid #e8e8e8;
+    border-left: 0.3em solid transparent;
+  
+    /* Controlls the size of the stars. */
+    font-size: 18px;
+}
+  
+.star:before, .star:after {
+      content: "";
+  
+      display: block;
+      width: 0;
+      height: 0;
+  
+      position: absolute;
+      top: 0.6em;
+      left: -1em;
+  
+      border-right: 1em solid transparent;
+      border-bottom: 0.7em solid #e8e8e8;
+      border-left: 1em solid transparent;
+  
+      transform: rotate(-35deg);
+}
+  
+.star:after {
+      transform: rotate(35deg);
+}
+
+.star-v2 {
+    position: relative;
+  
+    display: none;
+    width: 0;
+    height: 0;
+  
+    margin-left: 0.9em;
+    margin-right: 0.9em;
+    margin-bottom: 1.2em;
+  
+    border-right: 0.3em solid transparent;
+    border-bottom: 0.7em solid #fc0;
+    border-left: 0.3em solid transparent;
+  
+    /* Controlls the size of the stars. */
+    font-size: 18px;
+}
+  
+.star-v2:before, .star-v2:after {
+      content: "";
+  
+      display: block;
+      width: 0;
+      height: 0;
+  
+      position: absolute;
+      top: 0.6em;
+      left: -1em;
+  
+      border-right: 1em solid transparent;
+      border-bottom: 0.7em solid #fc0;
+      border-left: 1em solid transparent;
+  
+      transform: rotate(-35deg);
+}
+  
+.star-v2:after {
+      transform: rotate(35deg);
+}
