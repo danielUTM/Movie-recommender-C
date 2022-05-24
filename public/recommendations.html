@@ -67,11 +67,6 @@
             <div class="row featurette">
                 <div class="col-md-7">
                     <h2 id=m1Title class="featurette-heading"></h2>
-                    <p id=m1Runtime class="lead"></p>
-                    <p id=m1Budget class="lead"></p>
-                    <p id=m1Revenue class="lead"></p>
-                    <p id=m1AvgVote class="lead"></p>
-                    <p id=m1VoteCount class="lead"></p>
                     <p id=m1Description class="lead"></p>
                 </div>
                 <div class="col-md-5">
@@ -87,64 +82,58 @@
         <!-- How much do you want to watch this movie likert scale form -->
         <div class="wrap">
             <form action="" id="wtfForm">
-              <label class="statement">How much do you want to watch this film (1-7)?</label>
-              <ul class='likert'>
-                <li>
-                    <input type="radio" name="likert" value="wtf1" onclick="track(this.value)">
-                    <label>Not at all</label>
-                </li>
-                <li>
-                    <input type="radio" name="likert" value="wtf2" onclick="track(this.value)">
-                </li>
-                <li>
-                    <input type="radio" name="likert" value="wtf3" onclick="track(this.value)">
-                </li>
-                <li>
-                    <input type="radio" name="likert" value="wtf4" onclick="track(this.value)">
-                </li>
-                <li>
-                    <input type="radio" name="likert" value="wtf5" onclick="track(this.value)">
-                </li>
-                <li>
-                    <input type="radio" name="likert" value="wtf6" onclick="track(this.value)">
-                </li>
-                <li>
-                    <input type="radio" name="likert" value="wtf7" onclick="track(this.value)">
-                    <label>Extremely</label>
-                </li>
-              </ul>
-            </form>
+                <label class="statement">How much do you want to watch this film?</label>
+                <ul class='likert'>
+                  <li>
+                      <input type="radio" name="likert" value="wtf1" onclick="track(this.value)">
+                      <label>Not at all</label>
+                  </li>
+                  <li>
+                      <input type="radio" name="likert" value="wtf2" onclick="track(this.value)">
+                      <label>Not really</label>
+                  </li>
+                  <li>
+                      <input type="radio" name="likert" value="wtf3" onclick="track(this.value)">
+                      <label>Neither want nor don't want</label>
+                  </li>
+                  <li>
+                      <input type="radio" name="likert" value="wtf4" onclick="track(this.value)">
+                      <label>Moderately</label>
+                  </li>
+                  <li>
+                      <input type="radio" name="likert" value="wtf5" onclick="track(this.value)">
+                      <label>Extremely</label>
+                  </li>
+                </ul>
+              </form>
         </div>
 
     <!-- Is this a good recommendation for you likert scale -->
     <div class="wrap">
         <form action="" id="grForm">
-          <label class="statement">Is this a good recommendation for you (1-7)?</label>
-          <ul class='likert'>
-            <li>
-                <input type="radio" name="likert" value="gr1" onclick="track(this.value)">
-                <label>Not at all</label>
-            </li>
-            <li>
-                <input type="radio" name="likert" value="gr2" onclick="track(this.value)">
-            </li>
-            <li>
-                <input type="radio" name="likert" value="gr3" onclick="track(this.value)">
-            </li>
-            <li>
-                <input type="radio" name="likert" value="gr4" onclick="track(this.value)">
-            </li>
-            <li>
-                <input type="radio" name="likert" value="gr5" onclick="track(this.value)">
-            </li>
-            <li>
-                <input type="radio" name="likert" value="gr6" onclick="track(this.value)">
-            </li>
-            <li>
-                <input type="radio" name="likert" value="gr7" onclick="track(this.value)">
-                <label>Definitely</label>
-            </li>
-          </ul>
+            <label class="statement">Is this a good recommendation for you?</label>
+            <ul class='likert'>
+              <li>
+                  <input type="radio" name="likert" value="gr1" onclick="track(this.value)">
+                  <label>Very bad</label>
+              </li>
+              <li>
+                  <input type="radio" name="likert" value="gr2" onclick="track(this.value)">
+                  <label>Bad</label>
+              </li>
+              <li>
+                  <input type="radio" name="likert" value="gr3" onclick="track(this.value)">
+                  <label>Neither good/bad</label>
+              </li>
+              <li>
+                  <input type="radio" name="likert" value="gr4" onclick="track(this.value)">
+                  <label>Good</label>
+              </li>
+              <li>
+                  <input type="radio" name="likert" value="gr5" onclick="track(this.value)">
+                  <label>Very good</label>
+              </li>
+            </ul>
         </form>
     </div>
 
